@@ -92,12 +92,70 @@ class _MyHomePageState extends State<MyHomePage> {
           // wireframe for each widget.
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
-              'Selamat Alamat Mamat di Samsat:',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-            const Text(
-              'Jl. Raya Cibinong No. 123, Bogor, Jawa Barat',
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Card(
+                elevation: 8,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15),
+                ),
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15),
+                    gradient: LinearGradient(
+                      colors: [
+                        Colors.deepPurple.shade50,
+                        Colors.white,
+                      ],
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                    ),
+                  ),
+                  padding: const EdgeInsets.all(24),
+                  child: Column(
+                    children: [
+                      // Judul
+                      Text(
+                        'Selamat Alamat Mamat di Samsat',
+                        textAlign: TextAlign.center,
+                        style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                          color: Colors.deepPurple.shade700,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const SizedBox(height: 20),
+                      
+                      // Divider
+                      Divider(
+                        thickness: 2,
+                        color: Colors.deepPurple.shade200,
+                      ),
+                      const SizedBox(height: 16),
+                      
+                      // Alamat lengkap
+                      Container(
+                        padding: const EdgeInsets.all(16),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(10),
+                          border: Border.all(
+                            color: Colors.deepPurple.shade200,
+                            width: 2,
+                          ),
+                        ),
+                        child: Text(
+                          'Jl. Raya Cibinong No. 123, Bogor, Jawa Barat',
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.grey.shade800,
+                            height: 1.5,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
             ),
            
           ],
