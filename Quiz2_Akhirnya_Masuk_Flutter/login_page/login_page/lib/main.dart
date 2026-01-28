@@ -28,28 +28,28 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  final TextEditingController _usernameController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
   @override
   void dispose() {
-    _usernameController.dispose();
+    _emailController.dispose();
     _passwordController.dispose();
     super.dispose();
   }
 
   void _login() {
-    String username = _usernameController.text;
+    String email = _emailController.text;
     String password = _passwordController.text;
     
     // Simple validation
-    if (username.isEmpty || password.isEmpty) {
+    if (email.isEmpty || password.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Mohon isi username dan password')),
+        const SnackBar(content: Text('Mohon isi email dan password')),
       );
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Login berhasil! Welcome $username')),
+        SnackBar(content: Text('Login berhasil! Welcome $email')),
       );
     }
   }
@@ -94,9 +94,9 @@ class _LoginPageState extends State<LoginPage> {
               ),
               const SizedBox(height: 48),
               TextField(
-                controller: _usernameController,
+                controller: _emailController,
                 decoration: const InputDecoration(
-                  labelText: 'Username',
+                  labelText: 'Email',
                   prefixIcon: Icon(Icons.person),
                   border: OutlineInputBorder(),
                 ),
