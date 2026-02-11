@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import '../widgets/chat_bubble.dart';
+import '../widgets/chat_input_bar.dart';
 
 class ChatDetailScreen extends StatelessWidget {
   const ChatDetailScreen({super.key, required this.name});
@@ -87,65 +89,11 @@ class ChatDetailScreen extends StatelessWidget {
                 final fromMe = msg['fromMe'] as bool;
                 final text = msg['text'] as String;
 
-                return Align(
-                  alignment: fromMe ? Alignment.centerRight : Alignment.centerLeft,
-                  child: Container(
-                    margin: const EdgeInsets.symmetric(vertical: 6),
-                    padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
-                    decoration: BoxDecoration(
-                      color: fromMe ? const Color(0xFF0095F6) : const Color(0xFFF1F1F1),
-                      borderRadius: BorderRadius.circular(16),
-                    ),
-                    child: Text(
-                      text,
-                      style: TextStyle(
-                        color: fromMe ? Colors.white : Colors.black,
-                        fontSize: 14,
-                      ),
-                    ),
-                  ),
-                );
+                return ChatBubble(text: text, fromMe: fromMe);
               },
             ),
           ),
-          Container(
-            padding: const EdgeInsets.fromLTRB(12, 10, 12, 14),
-            decoration: const BoxDecoration(
-              color: Colors.white,
-              boxShadow: [
-                BoxShadow(
-                  color: Color(0x11000000),
-                  blurRadius: 8,
-                  offset: Offset(0, -2),
-                ),
-              ],
-            ),
-            child: Row(
-              children: [
-                Icon(Icons.photo_camera_outlined, color: Colors.grey[700]),
-                const SizedBox(width: 12),
-                Expanded(
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 12),
-                    decoration: BoxDecoration(
-                      color: const Color(0xFFF1F1F1),
-                      borderRadius: BorderRadius.circular(24),
-                    ),
-                    child: const TextField(
-                      style: TextStyle(color: Colors.black),
-                      decoration: InputDecoration(
-                        hintText: 'Message...',
-                        hintStyle: TextStyle(color: Colors.black54),
-                        border: InputBorder.none,
-                      ),
-                    ),
-                  ),
-                ),
-                const SizedBox(width: 12),
-                const Icon(Icons.mic_none, color: Color(0xFF0095F6)),
-              ],
-            ),
-          ),
+          const ChatInputBar(),
         ],
       ),
     );

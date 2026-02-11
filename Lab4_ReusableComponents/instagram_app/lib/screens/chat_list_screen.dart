@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'chat_detail_screen.dart';
+import '../widgets/chat_search_bar.dart';
+import '../widgets/chat_list_tile.dart';
 
 class ChatListScreen extends StatefulWidget {
   const ChatListScreen({super.key});
@@ -95,22 +97,9 @@ class _ChatListScreenState extends State<ChatListScreen> {
           ),
           Padding(
             padding: const EdgeInsets.fromLTRB(16, 0, 16, 12),
-            child: Container(
-              decoration: BoxDecoration(
-                color: const Color(0xFFF3F3F3),
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: TextField(
-                controller: _searchController,
-                onChanged: (_) => setState(() {}),
-                style: const TextStyle(color: Colors.black),
-                decoration: const InputDecoration(
-                  prefixIcon: Icon(Icons.search, color: Color(0xFF7A7A7A)),
-                  hintText: 'Search',
-                  hintStyle: TextStyle(color: Color(0xFF9A9A9A)),
-                  border: InputBorder.none,
-                ),
-              ),
+            child: ChatSearchBar(
+              controller: _searchController,
+              onChanged: (_) => setState(() {}),
             ),
           ),
           Expanded(
@@ -123,7 +112,9 @@ class _ChatListScreenState extends State<ChatListScreen> {
                 final name = chat['name']!;
                 final subtitle = chat['subtitle']!;
 
-                return ListTile(
+                return ChatListTile(
+                  name: name,
+                  subtitle: subtitle,
                   onTap: () {
                     Navigator.push(
                       context,
@@ -132,37 +123,6 @@ class _ChatListScreenState extends State<ChatListScreen> {
                       ),
                     );
                   },
-                  leading: CircleAvatar(
-                    radius: 26,
-                    backgroundColor: Colors.grey[300],
-                    child: Text(
-                      name.substring(0, 1),
-                      style: const TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.w700,
-                        fontSize: 18,
-                      ),
-                    ),
-                  ),
-                  title: Text(
-                    name,
-                    style: const TextStyle(
-                      color: Colors.black,
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                  subtitle: Text(
-                    subtitle,
-                    style: const TextStyle(
-                      color: Color(0xFF7A7A7A),
-                      fontSize: 13,
-                    ),
-                  ),
-                  trailing:
-                      const Icon(Icons.photo_camera_outlined, color: Color(0xFF7A7A7A)),
-                  contentPadding:
-                      const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
                 );
               },
             ),
